@@ -1,0 +1,205 @@
+<header class="navbar">
+
+    <div class="left-section">
+
+        <div>
+
+            <h2>{{greeting}}, {{fullName}} 👋</h2>
+
+            <p>{{today | date:'EEEE, dd MMMM yyyy'}}</p>
+
+        </div>
+
+    </div>
+
+    <div class="search-box">
+
+        <mat-icon>search</mat-icon>
+
+        <input
+        type="text"
+        placeholder="Search customer..." />
+
+    </div>
+
+    <div class="right-section">
+        <!-- Notification Button -->
+          <button
+               mat-icon-button
+              class="notification-btn"
+              [matMenuTriggerFor]="notificationMenu">
+
+              <mat-icon
+                  matBadge="{{todayReminderCount}}"
+                  matBadgeColor="warn">
+
+                   notifications
+
+                </mat-icon>
+
+            </button>
+
+ <!-- Notification Dropdown -->
+ <mat-menu
+ #notificationMenu="matMenu"
+ class="notification-menu">
+
+    <div class="notification-header">
+
+        🔔 Today's Reminders
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <ng-container
+    *ngIf="todayReminders.length>0">
+
+        <button
+        mat-menu-item
+        *ngFor="let reminder of todayReminders">
+
+            <div class="notification-item">
+
+                <strong>
+
+                    {{reminder.customerName}}
+
+                </strong>
+
+                <small>
+
+                    {{reminder.remarks}}
+
+                </small>
+
+            </div>
+
+        </button>
+
+    </ng-container>
+
+    <button
+    mat-menu-item
+    *ngIf="todayReminders.length==0">
+
+        No Reminders Today 🎉
+
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button
+    mat-menu-item
+    routerLink="/reminder">
+
+        View All Reminders →
+
+    </button>
+
+</mat-menu>
+<!-- ================= PROFILE BUTTON ================= -->
+<button
+mat-button
+class="profile-btn"
+[matMenuTriggerFor]="profileMenu">
+
+    <div class="avatar">
+
+        {{initials}}
+
+    </div>
+
+    <mat-icon>
+
+        keyboard_arrow_down
+
+    </mat-icon>
+
+</button>
+
+
+   
+
+<!-- ================= PROFILE MENU ================= -->
+
+<mat-menu
+#profileMenu="matMenu">
+
+    <div class="menu-header">
+
+        <div class="avatar large">
+
+            {{initials}}
+
+        </div>
+
+        <div>
+
+            <h4>{{fullName}}</h4>
+
+            <small>Administrator</small>
+
+        </div>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <button
+    mat-menu-item
+    (click)="goToProfile()">
+
+        <mat-icon>person</mat-icon>
+
+        My Profile
+
+    </button>
+
+    <button
+    mat-menu-item
+    (click)="goToSettings()">
+
+        <mat-icon>settings</mat-icon>
+
+        Settings
+
+    </button>
+
+    <button
+    mat-menu-item
+    (click)="changePassword()">
+
+        <mat-icon>lock</mat-icon>
+
+        Change Password
+
+    </button>
+
+    <button
+    mat-menu-item
+    (click)="toggleDarkMode()">
+
+        <mat-icon>dark_mode</mat-icon>
+
+        Dark Mode
+
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button
+    mat-menu-item
+    (click)="logout()">
+
+        <mat-icon color="warn">
+
+            logout
+
+        </mat-icon>
+
+        Logout
+
+    </button>
+
+</mat-menu>

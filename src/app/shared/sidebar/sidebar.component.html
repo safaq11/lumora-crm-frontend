@@ -1,0 +1,62 @@
+<div class="sidebar" [class.collapsed]="collapsed">
+
+    <div class="top">
+
+        <button class="menu-btn" (click)="toggleSidebar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <div class="logo" *ngIf="!collapsed">
+
+            <div class="logo-icon">🌅</div>
+
+            <div>
+
+                <h2>LUMORA</h2>
+                <p>Smart Lead Management</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a routerLink="/dashboard" routerLinkActive="active">
+            <mat-icon>dashboard</mat-icon>
+            <span *ngIf="!collapsed">Dashboard</span>
+        </a>
+
+        <a routerLink="/customer-lead" routerLinkActive="active">
+            <mat-icon>groups</mat-icon>
+            <span *ngIf="!collapsed">Customer Leads</span>
+        </a>
+
+        <a routerLink="/lead-type" routerLinkActive="active">
+            <mat-icon>category</mat-icon>
+            <span *ngIf="!collapsed">Lead Types</span>
+        </a>
+
+        <a routerLink="/follow-up" routerLinkActive="active">
+            <mat-icon>event</mat-icon>
+            <span *ngIf="!collapsed">Follow Ups</span>
+        </a>
+
+        <a routerLink="/reminder" routerLinkActive="active">
+            <mat-icon>notifications</mat-icon>
+            <span *ngIf="!collapsed">Reminders</span>
+        </a>
+
+        <a routerLink="/notes" routerLinkActive="active">
+            <mat-icon>description</mat-icon>
+            <span *ngIf="!collapsed">Notes</span>
+        </a>
+        <li (click)="openUsers()">
+             <mat-icon>groups</mat-icon>
+             <span>User Management</span>
+        </li>
+
+    </nav>
+
+</div>

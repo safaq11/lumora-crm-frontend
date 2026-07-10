@@ -1,0 +1,41 @@
+.page{
+
+    padding:25px;
+
+}
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.form{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+table{
+
+    width:100%;
+
+    background:white;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}

@@ -1,0 +1,17 @@
+.settings-container{
+
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+
+}
+
+mat-card{
+
+    width:600px;
+
+    padding:30px;
+
+    border-radius:20px;
+
+}

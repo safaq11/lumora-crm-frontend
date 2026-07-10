@@ -1,0 +1,145 @@
+.page{
+
+    padding:24px;
+
+}
+
+.page-header{
+
+    margin-bottom:20px;
+
+}
+
+.page-header h1{
+
+    margin:0;
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+.page-header p{
+
+    color:#666;
+
+    margin-top:5px;
+
+}
+
+.table-card{
+
+    padding:25px;
+
+    border-radius:18px;
+
+}
+
+.form-card{
+
+    margin-top:25px;
+
+    padding:30px;
+
+    border-radius:18px;
+
+}
+
+.table-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.filter-row{
+
+    margin-bottom:20px;
+
+}
+
+.filter-row mat-form-field{
+
+    width:350px;
+
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.form-grid mat-form-field{
+
+    width:100%;
+
+}
+
+.full-width{
+
+    grid-column:1/-1;
+
+}
+
+.button-group{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+table{
+
+    width:100%;
+
+}
+
+mat-paginator{
+
+    margin-top:15px;
+
+}
+
+@media(max-width:900px){
+
+.form-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.full-width{
+
+grid-column:auto;
+
+}
+
+.filter-row mat-form-field{
+
+width:100%;
+
+}
+
+.button-group{
+
+justify-content:center;
+
+}
+
+}

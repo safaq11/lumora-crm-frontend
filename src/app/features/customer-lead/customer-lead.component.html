@@ -1,0 +1,645 @@
+<mat-card class="table-card">
+
+    <!-- Header -->
+
+    <div class="table-header">
+
+        <div>
+
+            <h2>Customer Leads</h2>
+
+            <p>Manage all your customer leads in one place.</p>
+
+        </div>
+
+        <button
+         mat-raised-button
+         color="primary"
+         (click)="showForm = !showForm">
+         <mat-icon>
+               {{showForm ? 'close' : 'add'}}
+         </mat-icon>
+          {{showForm ? 'Close' : 'New Lead'}}
+        </button>
+        <button
+            mat-raised-button
+               color="accent"
+               (click)="exportToExcel()">
+
+            <mat-icon>download</mat-icon>
+
+            Export Excel
+
+        </button>
+
+    </div>
+   
+    <!-- Search & Filters -->
+
+    <div class="filter-row">
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Search Customer</mat-label>
+
+            <input
+                matInput
+                placeholder="Search by customer name..."
+                [(ngModel)]="searchKeyword"
+                (keyup)="applyFilters()">
+
+            <mat-icon matSuffix>search</mat-icon>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Status</mat-label>
+
+            <mat-select
+                [(ngModel)]="selectedStatus"
+                (selectionChange)="applyFilters()">
+
+                <mat-option value="">All</mat-option>
+
+                <mat-option value="NEW">New</mat-option>
+
+                <mat-option value="CONTACTED">Contacted</mat-option>
+
+                <mat-option value="INTERESTED">Interested</mat-option>
+
+                <mat-option value="FOLLOW_UP">Follow Up</mat-option>
+
+                <mat-option value="VISIT_SCHEDULED">Visit Scheduled</mat-option>
+
+                <mat-option value="NEGOTIATION">Negotiation</mat-option>
+
+                <mat-option value="CLOSED_WON">Closed Won</mat-option>
+
+                <mat-option value="CLOSED_LOST">Closed Lost</mat-option>
+
+                <mat-option value="NOT_INTERESTED">Not Interested</mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Priority</mat-label>
+
+            <mat-select
+                [(ngModel)]="selectedPriority"
+                (selectionChange)="applyFilters()">
+
+                <mat-option value="">All</mat-option>
+
+                <mat-option value="HOT">Hot</mat-option>
+
+                <mat-option value="WARM">Warm</mat-option>
+
+                <mat-option value="COLD">Cold</mat-option>
+
+                <mat-option value="NOT_A_CUSTOMER">Not A Customer</mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Lead Type</mat-label>
+
+            <mat-select
+                [(ngModel)]="selectedLeadType"
+                (selectionChange)="applyFilters()">
+
+                <mat-option value="">All</mat-option>
+
+                <mat-option
+                    *ngFor="let type of leadTypes"
+                    [value]="type.id">
+
+                    {{type.name}}
+
+                </mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <button
+            mat-stroked-button
+            color="warn"
+            (click)="clearFilters()">
+
+            <mat-icon>refresh</mat-icon>
+
+            Clear
+
+        </button>
+
+    </div>
+
+    <!-- CUSTOMER LEADS TABLE -->
+
+    <mat-card class="table-card">
+                <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+            class="customer-table">
+
+            <!-- ID -->
+
+            <ng-container matColumnDef="id">
+
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header>
+
+                    ID
+
+                </th>
+
+                <td mat-cell *matCellDef="let row; let i = index">
+                     {{i + 1}}
+                </td>
+
+            </ng-container>
+
+            <!-- CUSTOMER -->
+
+            <ng-container matColumnDef="customerName">
+
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header>
+
+                    Customer
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    <div class="customer-info">
+
+                        <div class="avatar">
+
+                            {{getInitials(row.customerName)}}
+
+                        </div>
+
+                        <div>
+
+                            <div class="customer-name">
+
+                                {{row.customerName}}
+
+                            </div>
+
+                            <small>
+
+                                {{row.email}}
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+            </ng-container>
+
+            <!-- MOBILE -->
+
+            <ng-container matColumnDef="mobile">
+
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header>
+
+                    Mobile
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.mobile}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- LEAD TYPE -->
+
+            <ng-container matColumnDef="leadTypeName">
+
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header>
+
+                    Lead Type
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.leadTypeName}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- CITY -->
+
+            <ng-container matColumnDef="city">
+
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header>
+
+                    City
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.city}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- STATUS -->
+
+            <ng-container matColumnDef="status">
+
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header>
+
+                    Status
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    <span
+                        class="status-chip"
+                        [ngClass]="getStatusClass(row.status)">
+
+                        {{row.status}}
+
+                    </span>
+
+                </td>
+
+            </ng-container>
+
+            <!-- PRIORITY -->
+
+            <ng-container matColumnDef="priority">
+
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    mat-sort-header>
+
+                    Priority
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    <span
+                        class="priority-chip"
+                        [ngClass]="getPriorityClass(row.priority)">
+
+                        {{row.priority}}
+
+                    </span>
+
+                </td>
+
+            </ng-container>
+
+            <!-- ACTIONS -->
+
+            <ng-container matColumnDef="actions">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Actions
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        (click)="editCustomerLead(row)">
+
+                        <mat-icon>
+
+                            edit
+
+                        </mat-icon>
+
+                    </button>
+
+                    <button
+                        mat-icon-button
+                        color="warn"
+                        (click)="deleteCustomerLead(row.id!)">
+
+                        <mat-icon>
+
+                            delete
+
+                        </mat-icon>
+
+                    </button>
+
+                </td>
+
+            </ng-container>
+
+            <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns">
+
+            </tr>
+
+            <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns;">
+
+            </tr>
+
+        </table>
+
+        <mat-paginator
+            [pageSize]="5"
+            [pageSizeOptions]="[5,10,20,50]"
+            showFirstLastButtons>
+
+        </mat-paginator>
+        
+
+    <!-- CUSTOMER FORM -->
+     <mat-card id="leadForm" class="form-card" *ngIf="showForm">
+
+        <h3>
+
+            {{isEditMode ? 'Update Customer Lead' : 'Add Customer Lead'}}
+
+        </h3>
+
+        <div class="form-grid">
+
+    <!-- Row 1 -->
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Customer Name</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.customerName">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Mobile Number</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.mobile">
+
+    </mat-form-field>
+
+    <!-- Row 2 -->
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Alternate Number</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.alternateNumber">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Email</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.email">
+
+    </mat-form-field>
+
+    <!-- Row 3 -->
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Lead Type</mat-label>
+
+        <mat-select [(ngModel)]="customerLead.leadTypeId">
+
+            <mat-option
+                *ngFor="let type of leadTypes"
+                [value]="type.id">
+
+                {{type.name}}
+
+            </mat-option>
+
+        </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>City</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.city">
+
+    </mat-form-field>
+
+    <!-- Row 4 -->
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Address</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.address">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Requirement</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.requirement">
+
+    </mat-form-field>
+
+    <!-- Row 5 -->
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Lead Source</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.leadSource">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Assigned Executive</mat-label>
+
+        <input
+            matInput
+            [(ngModel)]="customerLead.assignedExecutive">
+
+    </mat-form-field>
+
+    <!-- Row 6 -->
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Visit Date</mat-label>
+
+        <input
+            matInput
+            [matDatepicker]="visitPicker"
+            [(ngModel)]="customerLead.visitDate">
+
+        <mat-datepicker-toggle
+            matSuffix
+            [for]="visitPicker">
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #visitPicker></mat-datepicker>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Next Follow-Up Date</mat-label>
+
+        <input
+            matInput
+            [matDatepicker]="followPicker"
+            [(ngModel)]="customerLead.nextFollowUpDate">
+
+        <mat-datepicker-toggle
+            matSuffix
+            [for]="followPicker">
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #followPicker></mat-datepicker>
+
+    </mat-form-field>
+
+    <!-- Row 7 -->
+
+    <mat-form-field appearance="outline">
+
+        <mat-label>Status</mat-label>
+
+        <mat-select [(ngModel)]="customerLead.status">
+
+            <mat-option value="NEW">New</mat-option>
+            <mat-option value="CONTACTED">Contacted</mat-option>
+            <mat-option value="INTERESTED">Interested</mat-option>
+            <mat-option value="FOLLOW_UP">Follow Up</mat-option>
+            <mat-option value="VISIT_SCHEDULED">Visit Scheduled</mat-option>
+            <mat-option value="NEGOTIATION">Negotiation</mat-option>
+            <mat-option value="CLOSED_WON">Closed Won</mat-option>
+            <mat-option value="CLOSED_LOST">Closed Lost</mat-option>
+            <mat-option value="NOT_INTERESTED">Not Interested</mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+     <mat-form-field appearance="outline">
+
+        <mat-label>Priority</mat-label>
+
+        <mat-select [(ngModel)]="customerLead.priority">
+
+            <mat-option value="HOT">🔥 Hot</mat-option>
+            <mat-option value="WARM">🟡 Warm</mat-option>
+            <mat-option value="COLD">🔵 Cold</mat-option>
+            <mat-option value="NOT_A_CUSTOMER">⚪ Not a Customer</mat-option>
+
+        </mat-select>
+
+    </mat-form-field>
+
+    <!-- Full Width -->
+
+    <mat-form-field
+        appearance="outline"
+        class="full-width">
+
+        <mat-label>Discussion Details</mat-label>
+
+        <textarea
+            matInput
+            rows="4"
+            [(ngModel)]="customerLead.discussionDetails">
+
+          </textarea>
+
+       </mat-form-field>
+
+    </div>
+
+        <div class="button-group">
+
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="saveCustomerLead()">
+
+                {{ isEditMode ? 'Update Customer Lead' : 'Add Customer Lead' }}
+
+            </button>
+
+            <button
+                mat-stroked-button
+                color="warn"
+                (click)="resetForm()">
+
+                Reset
+
+            </button>
+
+        </div>
+
+    </mat-card>
+
+    

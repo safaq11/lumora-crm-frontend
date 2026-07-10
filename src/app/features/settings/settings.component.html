@@ -1,0 +1,54 @@
+<div class="settings-container">
+
+    <mat-card>
+
+        <h2>Application Settings</h2>
+
+        <mat-slide-toggle
+            [(ngModel)]="darkMode"
+            (change)="toggleTheme()">
+
+            Enable Dark Mode
+
+        </mat-slide-toggle>
+
+        <br><br>
+
+        <mat-slide-toggle
+
+             [(ngModel)]="notificationsEnabled"
+
+             (change)="toggleNotifications()">
+
+                   Enable Notifications
+
+        </mat-slide-toggle>
+
+        <br><br>
+
+        <mat-form-field appearance="outline">
+
+    <mat-label>
+
+        Company Name
+
+    </mat-label>
+
+    <input
+        matInput
+        [(ngModel)]="companyName">
+
+      </mat-form-field>
+
+            <button
+               mat-raised-button
+                color="primary"
+                (click)="saveCompanyName()">
+
+                    Save
+
+            </button>
+
+        </mat-card>
+
+</div>

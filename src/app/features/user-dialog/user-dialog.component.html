@@ -1,0 +1,105 @@
+<h2 mat-dialog-title>Add New User</h2>
+
+<mat-dialog-content>
+
+    <div class="form-grid">
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Full Name</mat-label>
+
+            <input
+                matInput
+                [(ngModel)]="user.fullName">
+
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Username</mat-label>
+
+            <input
+                matInput
+                [(ngModel)]="user.username">
+
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Password</mat-label>
+
+            <input
+                matInput
+                type="password"
+                [(ngModel)]="user.password">
+
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Email</mat-label>
+
+            <input
+                matInput
+                [(ngModel)]="user.email">
+
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Mobile Number</mat-label>
+
+            <input
+                matInput
+                [(ngModel)]="user.mobile">
+
+        </mat-form-field>
+
+
+       <mat-form-field appearance="outline">
+
+    <mat-label>Role</mat-label>
+
+    <input
+        matInput
+        placeholder="Example: MANAGER"
+        [(ngModel)]="user.role">
+
+</mat-form-field>
+
+        <mat-slide-toggle
+            [(ngModel)]="user.active">
+
+            Active User
+
+        </mat-slide-toggle>
+
+    </div>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+
+    <button
+        mat-button
+        (click)="closeDialog()">
+
+        Cancel
+
+    </button>
+
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="saveUser()">
+
+        Save User
+
+    </button>
+
+</mat-dialog-actions>

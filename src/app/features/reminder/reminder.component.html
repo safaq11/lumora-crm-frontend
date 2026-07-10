@@ -1,0 +1,390 @@
+<div class="page">
+
+    <div class="page-header">
+
+        <h1>Reminder Dashboard</h1>
+
+        <p>Track today's, overdue and upcoming follow-ups.</p>
+
+    </div>
+
+    <!-- Summary Cards -->
+
+    <div class="summary-grid">
+
+        <mat-card class="summary-card today">
+
+            <h2>{{todayReminders.length}}</h2>
+
+            <p>Today's Reminders</p>
+
+        </mat-card>
+
+        <mat-card class="summary-card overdue">
+
+            <h2>{{overdueReminders.length}}</h2>
+
+            <p>Overdue Reminders</p>
+
+        </mat-card>
+
+        <mat-card class="summary-card upcoming">
+
+            <h2>{{upcomingReminders.length}}</h2>
+
+            <p>Upcoming Reminders</p>
+
+        </mat-card>
+
+    </div>
+        <!-- ============================= -->
+    <!-- Today's Reminders Section -->
+    <!-- ============================= -->
+
+    <mat-card class="table-card">
+
+        <div class="section-header today-header">
+
+            <h2>📅 Today's Reminders</h2>
+
+            <span>{{todayReminders.length}} Reminder(s)</span>
+
+        </div>
+
+        <table
+            mat-table
+            [dataSource]="todayReminders">
+
+            <!-- ID Column -->
+
+            <ng-container matColumnDef="id">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    ID
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.id}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Customer Name -->
+
+            <ng-container matColumnDef="customerName">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Customer
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.customerName}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Discussion -->
+
+            <ng-container matColumnDef="discussion">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Discussion
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.discussion}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Next Follow-Up Date -->
+
+            <ng-container matColumnDef="nextFollowUpDate">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Follow-Up Date
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.nextFollowUpDate}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Remarks -->
+
+            <ng-container matColumnDef="remarks">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Remarks
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.remarks}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Header Row -->
+
+            <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns">
+
+            </tr>
+
+            <!-- Data Row -->
+
+            <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns;">
+
+            </tr>
+
+        </table>
+
+    </mat-card>
+
+        <!-- ============================= -->
+    <!-- Overdue Reminders Section -->
+    <!-- ============================= -->
+
+    <mat-card class="table-card">
+
+        <div class="section-header overdue-header">
+
+            <h2>🔴 Overdue Reminders</h2>
+
+            <span>{{overdueReminders.length}} Reminder(s)</span>
+
+        </div>
+
+        <table
+            mat-table
+            [dataSource]="overdueReminders">
+
+            <!-- ID -->
+
+            <ng-container matColumnDef="id">
+
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.id}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Customer -->
+
+            <ng-container matColumnDef="customerName">
+
+                <th mat-header-cell *matHeaderCellDef>Customer</th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.customerName}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Discussion -->
+
+            <ng-container matColumnDef="discussion">
+
+                <th mat-header-cell *matHeaderCellDef>Discussion</th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.discussion}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Date -->
+
+            <ng-container matColumnDef="nextFollowUpDate">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Follow-Up Date
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.nextFollowUpDate}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Remarks -->
+
+            <ng-container matColumnDef="remarks">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Remarks
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.remarks}}
+
+                </td>
+
+            </ng-container>
+
+            <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns">
+            </tr>
+
+            <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+        </table>
+
+    </mat-card>
+
+
+
+    <!-- ============================= -->
+    <!-- Upcoming Reminders Section -->
+    <!-- ============================= -->
+
+    <mat-card class="table-card">
+
+        <div class="section-header upcoming-header">
+
+            <h2>🟢 Upcoming Reminders</h2>
+
+            <span>{{upcomingReminders.length}} Reminder(s)</span>
+
+        </div>
+
+        <table
+            mat-table
+            [dataSource]="upcomingReminders">
+
+            <!-- ID -->
+
+            <ng-container matColumnDef="id">
+
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.id}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Customer -->
+
+            <ng-container matColumnDef="customerName">
+
+                <th mat-header-cell *matHeaderCellDef>Customer</th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.customerName}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Discussion -->
+
+            <ng-container matColumnDef="discussion">
+
+                <th mat-header-cell *matHeaderCellDef>Discussion</th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.discussion}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Date -->
+
+            <ng-container matColumnDef="nextFollowUpDate">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Follow-Up Date
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.nextFollowUpDate}}
+
+                </td>
+
+            </ng-container>
+
+            <!-- Remarks -->
+
+            <ng-container matColumnDef="remarks">
+
+                <th mat-header-cell *matHeaderCellDef>
+
+                    Remarks
+
+                </th>
+
+                <td mat-cell *matCellDef="let row">
+
+                    {{row.remarks}}
+
+                </td>
+
+            </ng-container>
+
+            <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns">
+            </tr>
+
+            <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+        </table>
+
+    </mat-card>
+
+</div>

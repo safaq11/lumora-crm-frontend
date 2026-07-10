@@ -1,0 +1,98 @@
+<div class="login-container">
+
+    <!-- Left Panel -->
+    <div class="left-panel">
+
+        <div class="brand">
+
+            <div class="logo-circle">
+                ☀
+            </div>
+
+            <h1>LUMORA</h1>
+
+            <h4>Smart Lead Management</h4>
+
+            <p class="tagline">
+                Every Opportunity Begins with a New Dawn.
+            </p>
+
+            <div class="features">
+
+                <div>
+                    <i class="fas fa-school"></i>
+                    Schools
+                </div>
+
+                <div>
+                    <i class="fas fa-building"></i>
+                    Real Estate
+                </div>
+
+                <div>
+                    <i class="fas fa-hospital"></i>
+                    Hospitals
+                </div>
+
+                <div>
+                    <i class="fas fa-car"></i>
+                    Cars
+                </div>
+
+                <div>
+                    <i class="fas fa-shield-alt"></i>
+                    Insurance
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Panel -->
+
+    <div class="right-panel">
+
+        <div class="login-card">
+
+            <h2>Welcome Back 👋</h2>
+
+            <p>
+                Sign in to continue
+            </p>
+
+            <mat-form-field appearance="outline" class="full-width">
+
+                <mat-label>Username</mat-label>
+
+                <input matInput [(ngModel)]="loginData.username">
+
+                <mat-icon matPrefix>
+                    person
+                </mat-icon>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+
+                <mat-label>Password</mat-label>
+
+                <input matInput type="password" [(ngModel)]="loginData.password">
+
+                <mat-icon matPrefix>
+                    lock
+                </mat-icon>
+
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" class="login-btn" (click)="login()">
+
+              Sign In 
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

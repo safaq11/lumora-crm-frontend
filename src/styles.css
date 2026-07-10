@@ -1,1 +1,112 @@
-/* You can add global styles to this file, and also import other style files */
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    margin:0;
+    background:#FFF8FB;
+}
+
+/* Card */
+.crm-card{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+/* Buttons */
+
+.btn-pink{
+    background:#ff8fab;
+    color:white;
+    border:none;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.btn-pink:hover{
+    background:#ff6f91;
+    transform:translateY(-2px);
+}
+
+.btn-purple{
+    background:#cdb4db;
+    color:white;
+}
+
+.btn-blue{
+    background:#a2d2ff;
+    color:white;
+}
+
+.page-title{
+
+    color:#6d597a;
+    font-weight:600;
+}
+
+html,body{
+    height:100%;
+}
+body.dark-theme{
+
+    background:#121212;
+    color:white;
+
+}
+
+body.dark-theme .main-content{
+
+    background:#1E1E1E;
+
+}
+
+body.dark-theme .table-container{
+
+    background:#1E1E1E;
+    color:white;
+
+}
+
+body.dark-theme table{
+
+    background:#1E1E1E;
+    color:white;
+
+}
+
+body.dark-theme th{
+
+    color:#E5E7EB;
+
+}
+
+body.dark-theme td{
+
+    color:#D1D5DB;
+
+}
+
+body.dark-theme
+.notification-btn mat-icon{
+
+    color:white !important;
+
+}
+
+body.dark-theme .card{
+
+    box-shadow:0 5px 20px rgba(0,0,0,.4);
+
+}
+
+body.dark-theme .mat-badge-content{
+
+    background:#ef4444 !important;
+    color:white !important;
+
+}
