@@ -9,7 +9,7 @@ import { Dashboard } from '../models/dashboard';
 })
 export class DashboardService {
 
-  private apiUrl="http://localhost:8080/api/dashboard";
+  private apiUrl="https://lumora-crm-backend-1.onrender.com/api/dashboard";
 
   constructor(private http:HttpClient){}
 

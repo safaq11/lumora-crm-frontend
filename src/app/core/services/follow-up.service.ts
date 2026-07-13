@@ -11,7 +11,7 @@ import { FollowUp } from '../models/follow-up';
 })
 export class FollowUpService {
 
-  private apiUrl = 'http://localhost:8080/api/follow-ups';
+  private apiUrl = 'https://lumora-crm-backend-1.onrender.com/api/follow-ups';
 
   constructor(private http: HttpClient) {}
 

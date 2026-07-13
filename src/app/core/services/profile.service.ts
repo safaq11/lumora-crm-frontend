@@ -11,7 +11,7 @@ import { User } from '../models/user';
 })
 export class ProfileService {
 
-  private apiUrl="http://localhost:8080/api/users";
+  private apiUrl="https://lumora-crm-backend-1.onrender.com/api/users";
 
   constructor(private http:HttpClient){}
 

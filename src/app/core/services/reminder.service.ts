@@ -9,7 +9,7 @@ import { Reminder } from '../models/reminder';
 })
 export class ReminderService {
 
-  private apiUrl = 'http://localhost:8080/api/reminders';
+  private apiUrl = 'https://lumora-crm-backend-1.onrender.com/api/reminders';
 
   constructor(private http: HttpClient) {}
 

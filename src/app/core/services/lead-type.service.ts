@@ -8,7 +8,7 @@ import { LeadType } from '../models/lead-type';
 })
 export class LeadTypeService {
 
-  private apiUrl = 'http://localhost:8080/api/lead-types';
+  private apiUrl = 'https://lumora-crm-backend-1.onrender.com/api/lead-types';
 
   constructor(private http: HttpClient) {}
 

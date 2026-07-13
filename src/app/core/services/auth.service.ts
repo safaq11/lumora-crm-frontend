@@ -10,7 +10,7 @@ import { LoginResponse } from '../models/login-response';
 })
 export class AuthService {
 
-  private apiUrl = "http://localhost:8080/api/auth";
+  private apiUrl = "https://lumora-crm-backend-1.onrender.com/api/auth";
 
   constructor(private http: HttpClient) { }
 

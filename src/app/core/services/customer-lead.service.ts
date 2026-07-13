@@ -9,7 +9,7 @@ import { CustomerLead } from '../models/customer-lead';
 })
 export class CustomerLeadService {
 
-  private apiUrl = "http://localhost:8080/api/customer-leads";
+  private apiUrl = "https://lumora-crm-backend-1.onrender.com/api/customer-leads";
 
   constructor(private http: HttpClient) {}
 
